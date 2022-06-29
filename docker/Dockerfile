@@ -11,12 +11,12 @@ COPY . .
 RUN make install
 
 FROM base-image AS production-image
-COPY crackme_bin/Keygen.tar.gz /usr/local/bin/Keygen.tar.gz
-RUN chmod 751 /usr/local/bin/Keygen.tar.gz
+COPY crackme_bin/SimpleKeyGen /usr/local/bin/SimpleKeyGen
+RUN chmod 751 /usr/local/bin/SimpleKeyGen
 WORKDIR /home/crackme/
 # RUN python3 -m site # if this ever breaks to get dist-packages folder.
 COPY --from=compile-image /usr/local/lib/python3.10/dist-packages/ /usr/local/lib/python3.10/dist-packages/
 COPY --from=compile-image /usr/local/bin/crackme_simple_keygen /usr/local/bin/
 
 USER crackme
-CMD Keygen.tar.gz
+CMD SimpleKeyGen
