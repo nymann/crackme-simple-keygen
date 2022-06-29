@@ -15,13 +15,17 @@ def keygen():
 
 
 def generate_serial() -> str:
-    start_index = _random()
-    serial = [chr(i) for i in range(start_index, start_index + PASSWORD_LEN)]
+    serial = []
+    for _ in range(0, PASSWORD_LEN - 1, 2):
+        a: int = _random_ascii()
+        serial.append(chr(a))
+        serial.append(chr(a + 1))
+
     return "".join(serial)
 
 
-def _random() -> int:
-    return randint(ASCII_MIN, ASCII_MAX - PASSWORD_LEN)
+def _random_ascii() -> int:
+    return randint(ASCII_MIN, ASCII_MAX - 1)
 
 
 if __name__ == "__main__":
