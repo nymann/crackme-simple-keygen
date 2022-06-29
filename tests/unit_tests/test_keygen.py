@@ -1,4 +1,3 @@
-from devtools import debug
 import pytest
 
 from crackme_simple_keygen.main import generate_serial
@@ -13,6 +12,5 @@ def test_keygen(serial: str):
         a = serial[i]
         b = serial[i + 1]
         if ord(a) - ord(b) != -1:
-            debug(a, b, ord(a) - ord(b))
             assert False
     assert True
